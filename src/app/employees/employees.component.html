@@ -1,0 +1,47 @@
+<div class="container">
+<div class="row px-3 mt-3">
+  <input
+  class="form-control mr-sm-2"
+  type="search"
+  placeholder="Search"
+  aria-label="Search"
+  [(ngModel)]="searchEmployeeByName"
+  />
+</div>
+
+<div class="row p-3">
+  <div class="col-md-3 col-lg-3" *ngFor="let n of (employeeList | searchEmployees: searchEmployeeByName)">
+    
+    <div class="card mt-3">
+  <img [src]="n.image" class="card-img-top" alt="..." width="200px" height="200px">
+  <div class="card-body">
+    <h5 class="card-title"> {{n.name}}</h5>
+    <p class="card-text">{{n.description}}</p>
+
+    <div class="float-md-right">
+      <i
+        class="fas fa-pencil-alt px-3 text-primary"
+        routerLink="/update/{{ n.id }}"
+      ></i>
+      <i class="fas fa-trash-alt text-danger" (click)="onDelete(n.id)"></i>
+    </div>
+
+     <div class="float-md-left" *ngIf="n.gender == 'female'">
+      <i
+      class="fas fa-female"
+    ></i> 
+    </div>
+
+
+    <div  class="float-md-left" *ngIf="n.gender == 'male'">
+    <i
+     class="fas fa-male"
+    ></i> 
+  </div>  
+    </div>
+    
+  </div>
+</div>
+</div>
+
+</div>
